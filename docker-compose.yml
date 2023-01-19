@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  eureka-server:
+    build: eureka-server/
+    ports:
+      - "8761:8761"
+    container_name: eureka-server
+
+  bill-service:
+    build: bill-service/
+    container_name: bill-service
+    depends_on:
+      - eureka-server
+
+  person-service:
+    build: person-service/
+    container_name: person-service
+    depends_on:
+      - eureka-server
+
+  gateway:
+    build: gateway/
+    ports:
+      - "4444:4444"
+    container_name: gateway
+    depends_on:
+      - bill-service
+      - person-service
