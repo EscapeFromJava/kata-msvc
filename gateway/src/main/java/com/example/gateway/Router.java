@@ -17,6 +17,7 @@ public class Router {
         return builder.routes()
                 .route("bill", r -> r.path("/bs-api/**").uri("lb://bill-service"))
                 .route("person", r -> r.path("/ps-api/**").uri("lb://person-service"))
+                .route("materials", r -> r.path("/ms-api/**").uri("lb://materials-service"))
                 .route("client", r -> r.path("/client").uri("lb://eureka-client"))
                 .build();
     }

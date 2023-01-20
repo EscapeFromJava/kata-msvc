@@ -1,28 +1,5 @@
 spring:
   application:
     name: bill-service
-  cloud:
-    openfeign:
-      circuitbreaker:
-        enabled: true
-
-server:
-  port: 0
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka
-  instance:
-    prefer-ip-address: true
-    lease-renewal-interval-in-seconds: 30
-
-management:
-  tracing:
-    sampling:
-      probability: 1
-  endpoints:
-    web:
-      base-path: /bs-api/actuator
-
-token: ${TOKEN}
+  config:
+    import: configserver:http://localhost:8886

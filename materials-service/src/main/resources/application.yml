@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: materials-service
+  config:
+    import: configserver:http://localhost:8886
