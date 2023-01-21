@@ -1,7 +1,6 @@
 package com.example.materialsservice.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -11,6 +10,7 @@ import java.util.List;
 @RequestMapping("/ms-api")
 @RequiredArgsConstructor
 public class MaterialsController {
+
     private final List<String> materials = new ArrayList<>();
 
     @GetMapping("/")

@@ -5,25 +5,60 @@ services:
     build: eureka-server/
     ports:
       - "8761:8761"
+    expose:
+      - 8761
     container_name: eureka-server
+    networks:
+      - kata
 
-  bill-service:
-    build: bill-service/
-    container_name: bill-service
+  config:
+    build: config/
+    expose:
+      - 8886
+    container_name: config
     depends_on:
       - eureka-server
+    networks:
+      - kata
 
-  person-service:
-    build: person-service/
-    container_name: person-service
+#  bill-service:
+#    build: bill-service/
+#    expose:
+#      - 0
+#    container_name: bill-service
+#    depends_on:
+#      - eureka-server
+#
+#  person-service:
+#    build: person-service/
+#    expose:
+#      - 0
+#    container_name: person-service
+#    depends_on:
+#      - eureka-server
+
+  materials-service:
+    build: materials-service/
+    expose:
+      - 0
+    container_name: materials-service
     depends_on:
-      - eureka-server
+      - config
+    networks:
+      - kata
 
   gateway:
     build: gateway/
+    expose:
+      - 4444
     ports:
       - "4444:4444"
     container_name: gateway
     depends_on:
-      - bill-service
-      - person-service
+      - materials-service
+    networks:
+      - kata
+
+networks:
+  kata:
+    driver: "bridge"
