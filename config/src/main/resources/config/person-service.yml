@@ -15,7 +15,17 @@ management:
       probability: 1
   endpoints:
     web:
+      exposure:
+        include: health,prometheus
       base-path: /ps-api/actuator
+  metrics:
+    distribution:
+      percentiles-histogram:
+        "[http.server.requests]": true
+  prometheus:
+    metrics:
+      export:
+        enabled: true
 
 logging:
   file:
