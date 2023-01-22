@@ -1,0 +1,18 @@
+scrape_configs:
+  - job_name: 'materials_service_monitoring'
+    scrape_interval: 5s
+    metrics_path: '/ms-api/actuator/prometheus'
+    static_configs:
+      - targets: ['host.docker.internal:4444']
+
+  - job_name: 'person_service_monitoring'
+    scrape_interval: 5s
+    metrics_path: '/ps-api/actuator/prometheus'
+    static_configs:
+      - targets: ['host.docker.internal:4444']
+
+  - job_name: 'bill_service_monitoring'
+    scrape_interval: 5s
+    metrics_path: '/bs-api/actuator/prometheus'
+    static_configs:
+      - targets: [ 'host.docker.internal:4444' ]
